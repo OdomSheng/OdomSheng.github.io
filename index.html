@@ -236,61 +236,18 @@
 
       
         
-          
-            <h1 id="Git学习之路"><a href="#Git学习之路" class="headerlink" title="Git学习之路"></a>Git学习之路</h1><p>入门教程:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">史上最浅显易懂的Git教程</a></p>
-<h2 id="笔记总结"><a href="#笔记总结" class="headerlink" title="笔记总结"></a>笔记总结</h2><ul>
+          <h2 id="Git学习"><a href="#Git学习" class="headerlink" title="Git学习"></a>Git学习</h2><p>入门教程:<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">史上最浅显易懂的Git教程</a></p>
+<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><ul>
 <li><code>git init</code><br>创建版本库</li>
 <li><code>git add</code><br>  提交变更到暂存区</li>
 <li><code>git commit</code><br>  提交变更到版本库</li>
 <li><code>git status</code><br>  查看仓库当前的状态</li>
-<li><code>git diff</code><br>  查看修改的内容</li>
-<li><code>git log</code><br>  显示从最近到最远的提交日志，若嫌输出信息太多，可以加上<code>--pretty=oneline</code>参数</li>
-<li><code>git reset</code><br>  版本回退，加上 commit id，版本号没必要写全，git 会自动去找。版本回退采用指向当前版本的<code>HEAD</code>指针，<code>HEAD</code> 指向的版本就是当前版本，git 允许我们在版本的历史之间穿梭，使用命令 <code>git reset --hard commit_id</code></li>
-<li><code>git reflog</code><br>  查看命令历史 ，可以查看 commit_id</li>
-<li><code>git checkout -- file</code><br>  丢弃工作区的修改，没有–命令就变成了“切换到另一个分之”</li>
-<li><code>git rm</code><br>  删除版本库中的文件</li>
-</ul>
-<h4 id="远程仓库相关操作"><a href="#远程仓库相关操作" class="headerlink" title="远程仓库相关操作"></a>远程仓库相关操作</h4><ol>
-<li>创建SSH Key<br> <code>ssh-keygen -t rsa -C &quot;YourEmail@example.com&quot;</code> 一路回车使用默认值即可。一切顺利，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，SSH Key的秘钥对，id_rsa是私钥，不能泄露，id_rsa.pub是公钥。</li>
-<li>登录GitHub<br> 打开”Account Settings”-&gt;”SSH Keys”页面，添加SSH Key</li>
-<li>添加远程库<br> 在GitHub上新建仓库，根据GitHub的提示，在本地仓库目录下运行命令：<code>git remote add origin git@github.com:UserName/RepositoryName.git</code></li>
-<li><code>git push -u origin master</code><br>  远程库的名字就是origin，Git默认叫法，此命令把本地卡的所有内容推送到远程库上，第一次推送master分支的所有内容</li>
-<li><code>git push origin master</code><br>  每次本地提交后，使用此命令推送</li>
-<li>克隆远程库<br> <code>git clone git@github.com:UserName/RepositoryName.git</code></li>
-</ol>
-<h4 id="分支相关操作"><a href="#分支相关操作" class="headerlink" title="分支相关操作"></a>分支相关操作</h4><ul>
-<li><code>git checkout -b xxx</code><br>  创建xxx分支库并且切换到xxx分支，加上-b参数相当于以下两条命令<br>  git branch xxx<br>  git checkout xxx</li>
-<li><code>git branch</code><br>   列出所有分支，当前分支前面会标一个*号</li>
-<li><code>git checkout xxx</code><br>  切换到xxx分支</li>
-<li><code>git merge xxx</code><br>  合并xxx分支</li>
-<li><code>git branch -d xxx</code><br>  删除xxx分支</li>
-<li>Git会用&lt;&lt;&lt;&lt;&lt;&lt;&lt;,=======,&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出冲突文件中不同分支的内容</li>
-<li><code>git log --graph</code><br>  查看分支合并图</li>
-<li><code>git merge</code><br>  合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，而fast forward合并则看不出来曾经做过合并</li>
-<li><code>git stash</code><br>   “储藏”当前工作现场，等待恢复</li>
-<li><code>git stash list</code><br>  查看储藏的列表</li>
-<li><code>git stash apply</code><br>  进行工作现场恢复，但是恢复后stash内容并不删除，需要用 git stash drop 来删除</li>
-<li><code>git stash pop</code><br>  恢复工作现场的同时把stash的内容也删了</li>
-<li><code>git branch -D xxx</code><br>  强行删除xxx分支</li>
-<li><code>git remote -v</code><br>  查看远程库信息</li>
-<li>本地新建的分支如果不推送到远程，对其他人就是不可见的</li>
-<li>从本地推送分支，使用<code>git push origin branch-name</code>，如果推送失败，先用 <code>git pull</code> 抓取远程的新提交</li>
-<li>在本地创建和远程分支对应的分支，使用 <code>git checkout -b branch-name origin/branch-name</code> ，本地和远程分支的名称最好一致</li>
-<li>建立本地分支和远程分支的关联，使用 <code>git branch --set-upstream branch-name origin/branch-name</code> </li>
-<li>从远程抓取分支，使用 <code>git pull</code> ，如果有冲突，要先处理冲突</li>
-</ul>
-<h4 id="标签相关"><a href="#标签相关" class="headerlink" title="标签相关"></a>标签相关</h4><ul>
-<li><code>git tag &lt;name&gt;</code> 用于新建一个标签，默认为 <code>HEAD</code> ，也可以指定一个commit id</li>
-<li><code>git tag -a &lt;name&gt; -m &quot;blablabla...&quot;</code> 指定标签信息</li>
-<li><code>git tag -s &lt;name&gt; -m &quot;blablabla...&quot;</code> 用PGP签名标签</li>
-<li><code>git tag</code> 查看所有标签</li>
-<li><code>git push origin &lt;name&gt;</code> 推送一个本地标签</li>
-<li><code>git push origin --tags</code> 推送全部未推送过的本地标签</li>
-<li><code>git tag -d &lt;name&gt;</code> 删除一个本地标签</li>
-<li><code>git push origin :refs/tags/&lt;name&gt;</code> 删除一个远程标签</li>
-</ul>
-
-          
+<li><code>git diff</code><br>  查看修改的内容
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/09/Git初学小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
